@@ -1,0 +1,22 @@
+import seaborn as sns
+fig = plt.figure(figsize=(30,10))
+r = sns.heatmap(df3, cmap='RdBu_r', linecolor="#F6F2EC", linewidth=2)
+r.set_title("Training Density in Hours for New Hires by Week")
+plt.rcParams.update({'font.size': 12})
+plt.savefig('heatmap.png')
+plt.rcParams['figure.facecolor'] = '#F6F2EC'
+
+import pandas as pd
+import numpy as np
+from pandas import ExcelWriter
+from pandas import ExcelFile
+import matplotlib.pyplot as plt
+import seaborn as sns
+df = pd.read_excel('weeklyhour.xlsx')
+col = df.columns
+df = df.dropna()
+df2 = df.set_index("Unnamed: 0", drop = True)
+df3=df2.loc["CA-M&P":"CM - Tier 3","Week 1":"Week 24"]/60
+df4 = df3.transpose()
+df4.plot()
+plt.figure(figsize=(30,100))
